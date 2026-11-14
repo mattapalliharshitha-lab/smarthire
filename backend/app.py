@@ -1,6 +1,20 @@
 import os
-from flask import Flas
-from flask_cors import CORS  # You MUST have this
+from flask import Flask
+
+
+def CORS(app):
+    @app.after_request
+    def add_cors_headers(response):
+        response.headers.setdefault("Access-Control-Allow-Origin", "*")
+        response.headers.setdefault(
+            "Access-Control-Allow-Headers", "Content-Type, Authorization"
+        )
+        response.headers.setdefault(
+            "Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        )
+        return response
+
+    return app
 
 app = Flask(__name__)
 CORS(app)

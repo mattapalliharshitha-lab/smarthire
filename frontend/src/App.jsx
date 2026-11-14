@@ -18,7 +18,11 @@ import {
 } from "lucide-react";
 import "./App.css";
 
-const API_URL = "https://smarthire-api.onrender.com";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV
+    ? "http://127.0.0.1:5000"
+    : "https://smarthire-api.onrender.com");
 function App() {
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -167,6 +171,14 @@ function App() {
           {mobileMenu ? <X /> : <Menu />}
         </button>
       </header>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        hidden
+        accept=".pdf,.docx"
+        onChange={handleFileChange}
+      />
 
       {/* =================================
           HOME PAGE
@@ -355,14 +367,6 @@ function App() {
               {loading ? <LoaderCircle className="spin" /> : <Upload size={18} />}
               {loading ? "Analyzing..." : "Upload Your Resume"}
             </button>
-
-            <input
-              ref={fileInputRef}
-              type="file"
-              hidden
-              accept=".pdf,.docx"
-              onChange={handleFileChange}
-            />
 
             {error && (
               <div className="error-message">

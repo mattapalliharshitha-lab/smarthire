@@ -1084,7 +1084,6 @@ def rank_jobs(resume_text, detected_skills):
 # =====================================
 
 @app.route("/api/analyze", methods=["POST"])
-@token_required
 def analyze_resume():
 
     if "resume" not in request.files:

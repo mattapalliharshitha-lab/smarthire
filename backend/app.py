@@ -3,7 +3,7 @@ from flask import Flas
 from flask_cors import CORS  # You MUST have this
 
 app = Flask(__name__)
-CORS(app)  # This allows Vercel to connectimport os
+CORS(app)
 import re
 import sqlite3
 from functools import wraps
